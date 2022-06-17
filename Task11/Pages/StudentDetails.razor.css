@@ -11,11 +11,7 @@
     display: block;
 }
 
-.student-form lable span, input, image {
-    display: flex;
-}
-
-.student-label-left {
+.student-form lable span, input {
     display: flex;
 }
 
@@ -27,7 +23,9 @@
 }
 
 .button-save {
-    border-radius: 10px;
+    margin-top: 10px;
     padding: 5px 25px;
+    color: white;
+    background: blue;
 }
 
