@@ -1,7 +1,53 @@
 ﻿@page "/students"
+@using Task11.Data
+@inject IStudentService service
+@inject IJSRuntime JsRuntime
 
-<h3>Students</h3>
+<h3><u>Students</u></h3>
+<hr />
+
+
+<table class="student-table">
+    <thead>
+        <tr>
+            <th>Avatar</th>
+            <th scope="col"><span class="text">FirstName</span></th>
+            <th scope="col"><span class="text">LastName</span></th>
+            <th scope="col"><span class="text">BirthDate</span></th>
+            <th scope="col"><span class="text">Studies</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in students)
+        {
+            <tr>               
+                <td><img src="@student.Avatar" width="50" height="50" class="student-avatar"></td>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+                <td>@student.BirthDate.ToShortDateString()</td>
+                <td>@student.Studies</td>
+                <td>
+                    <button @onclick="() => Show(student.StudentID)" class="student-delete-button">&times;</button>
+                    <a href="/students/@student.StudentID" class="student-edit">
+                        <span class="text-edit">Edit</span></a>
+                </td>            
+            </tr>  
+        }
+    </tbody>
+</table>
+
+
 
 @code {
+    private List<Student> students;
 
+    protected override void OnInitialized()
+    {
+        students = StudentService.Students;
+    }
+
+    private async Task Show(int studentId)
+    {
+        await JsRuntime.InvokeVoidAsync("show", studentId);
+    }
 }

@@ -14,5 +14,23 @@ namespace Task11.Data
             new Student{ StudentID = 3, Avatar=pictureUrl, FirstName="Aleksander", LastName="Adamkowski", BirthDate=new DateTime(2002,6,20), Studies="Fizyka" },
             new Student{ StudentID = 4, Avatar=pictureUrl, FirstName="Giorgio", LastName="Giovanni", BirthDate=new DateTime(1940,4,26), Studies="Informatyka" },
         };
+
+        //CRUD
+        public void CreateStudent(int ID)
+        {
+
+        }
+        public void FindStudent(int ID)
+        {
+
+        }
+        public void UpdateStudent(int ID)
+        {
+
+        }
+        public void DeleteStudent(int Id)
+        {
+
+        }
     }
 }
