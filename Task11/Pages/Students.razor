@@ -36,6 +36,21 @@
     </tbody>
 </table>
 
+@foreach (var student in students)
+{
+    <div class="submition" id="submition-@student.StudentID">
+        <div class="submitiom-content">
+            <div class="header">
+                <span class="title">Are you sure you want to delete this student?</span>
+            </div>
+            <from class="body" action="/students">
+                <button @onclick="() => Delete(student.StudentID)" class="sub-button" type="submit">Yes</button>
+                <button @onclick="Decline" class="sub-button">No</button>
+            </from>
+        </div>
+    </div>
+}
+
 
 
 @code {
@@ -49,5 +64,22 @@
     private async Task Show(int studentId)
     {
         await JsRuntime.InvokeVoidAsync("show", studentId);
+    }
+
+    private async Task Confirm()
+    {
+        await JsRuntime.InvokeVoidAsync("confirm");
+    }
+
+    private async Task Decline()
+    {
+        await JsRuntime.InvokeVoidAsync("decline");
+    }
+
+    private async Task Delete(int studentId)
+    {
+        students.Remove(service.FindStudent(studentId));
+        service.DeleteStudent(studentId);
+        await Confirm();
     }
 }

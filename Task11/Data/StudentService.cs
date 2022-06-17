@@ -30,7 +30,8 @@ namespace Task11.Data
         }
         public void DeleteStudent(int studentID)
         {
-            // To:do implementation
+            var student = FindStudent(studentID);
+            if (student != null) Students.Remove(student);
         }
     }
 }
