@@ -11,25 +11,27 @@
     <thead>
         <tr>
             <th>Avatar</th>
-            <th scope="col"><span class="text">FirstName</span></th>
-            <th scope="col"><span class="text">LastName</span></th>
-            <th scope="col"><span class="text">BirthDate</span></th>
-            <th scope="col"><span class="text">Studies</span></th>
+            <th @onclick="SortByFirstName"><span class="text">FirstName</span></th>
+            <th @onclick="SortByLastName"><span class="text">LastName</span></th>
+            <th @onclick="SortByBirthDate"><span class="text">BirthDate</span></th>
+            <th @onclick="SortByStudies"><span class="text">Studies</span></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var student in students)
         {
             <tr>               
-                <td><img src="@student.Avatar" width="50" height="50" class="student-avatar"></td>
+                <td>
+                    <img src="@student.Avatar" class="student-avatar">
+                    <a href="/students/@student.StudentID" class="student-edit">
+                    <span class="text-edit">Edit</span></a>
+                </td>
                 <td>@student.FirstName</td>
                 <td>@student.LastName</td>
                 <td>@student.BirthDate.ToShortDateString()</td>
                 <td>@student.Studies</td>
                 <td>
                     <button @onclick="() => Show(student.StudentID)" class="student-delete-button">&times;</button>
-                    <a href="/students/@student.StudentID" class="student-edit">
-                        <span class="text-edit">Edit</span></a>
                 </td>            
             </tr>  
         }
@@ -81,5 +83,62 @@
         students.Remove(service.FindStudent(studentId));
         service.DeleteStudent(studentId);
         await Confirm();
+    }
+
+    private bool order = true;
+    private void SortByFirstName()
+    {
+        if (order == true)
+        {
+            students = students.OrderBy(student => student.FirstName).ToList();
+            order = false;
+        }
+        else
+        {
+            students = students.OrderByDescending(students => students.FirstName).ToList();
+            order = true;
+        }
+    }
+
+    private void SortByLastName()
+    {
+        if (order == true)
+        {
+            students = students.OrderBy(student => student.LastName).ToList();
+            order = false;
+        }
+        else
+        {
+            students = students.OrderByDescending(students => students.LastName).ToList();
+            order = true;
+        }
+    }
+
+    private void SortByBirthDate()
+    {
+        if (order == true)
+        {
+            students = students.OrderBy(student => student.BirthDate).ToList();
+            order = false;
+        }
+        else
+        {
+            students = students.OrderByDescending(students => students.BirthDate).ToList();
+            order = true;
+        }
+    }
+
+    private void SortByStudies()
+    {
+        if (order == true)
+        {
+            students = students.OrderBy(student => student.Studies).ToList();
+            order = false;
+        }
+        else
+        {
+            students = students.OrderByDescending(students => students.Studies).ToList();
+            order = true;
+        }
     }
 }
