@@ -1,0 +1,36 @@
+﻿@page "/students/{StudentID:int}"
+@using Task11.Data
+@inject IStudentService service
+
+
+@if(student != null)
+{
+	<h3><u>Student's details</u></h3>
+	<hr />
+	<form action="/students" class="student-form">
+		<div class="student-label-left">
+			<label>
+				<span> First name: </span>
+				<input @bind="student.FirstName" />
+			</label>
+		</div>
+	</form>
+}
+else
+{
+	<h3> Student does not exist</h3>
+}
+
+
+
+
+@code {
+	[Parameter]
+	public int StudentID { get; set; }
+	private Student student;
+
+	protected override void OnInitialized()
+	{
+		student = service.FindStudent(StudentID);
+	}
+}

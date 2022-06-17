@@ -16,21 +16,21 @@ namespace Task11.Data
         };
 
         //CRUD
-        public void CreateStudent(int ID)
+        public void CreateStudent(int studentID)
         {
-
+            // To:do implementation
         }
-        public void FindStudent(int ID)
+        public Student FindStudent(int studentID)
         {
-
+            return Students.Find(student => student.StudentID == studentID);
         }
-        public void UpdateStudent(int ID)
+        public void UpdateStudent(int studentID)
         {
-
+            // To:do implementation
         }
-        public void DeleteStudent(int Id)
+        public void DeleteStudent(int studentID)
         {
-
+            // To:do implementation
         }
     }
 }

@@ -2,5 +2,6 @@
 {
     public interface IStudentService
     {
+        public Student FindStudent(int studentID);
     }
 }
