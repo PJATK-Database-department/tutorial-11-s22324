@@ -5,26 +5,38 @@
 
 @if(student != null)
 {
-	<head>
-
-	</head>
 	<h3><u>Student's details</u></h3>
 	<hr />
-	<form action="/students" class="student-form">
-		<div class="student-label-left">
-			<label>
-				<span> First name: </span>
-				<input @bind="student.FirstName" />
-			</label>
-		</div>
-	</form>
+    <form action="/students" class="student-form">
+        <label class="student-avatar-label">
+                <span>Avatar: </span>
+                <input @bind="student.Avatar" />
+                <img src="@student.Avatar" title="avatar of student" class="student-form-image">
+        </label>
+        <label>
+            <span>First name: </span>
+            <input @bind="student.FirstName" />
+        </label>    
+        <label>
+            <span>Last name: </span>
+            <input @bind="student.LastName" />
+        </label>
+        <label>
+            <span>Birth date: </span>
+            <input type="date" @bind="student.BirthDate" />
+        </label>
+
+        <label>
+            <span>Studies: </span>
+            <input @bind="student.Studies" />
+        </label>
+        <button type="submit" class="button-save">Return & Save</button>
+    </form>
 }
 else
 {
 	<h3> Student does not exist</h3>
 }
-
-
 
 
 @code {

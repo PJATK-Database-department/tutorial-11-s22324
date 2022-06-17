@@ -1,1 +1,33 @@
-﻿
+﻿.student-form label input {
+    margin-top: 0px;
+    border-radius: 10px;
+    width: 400px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* this makes everything on top of each other*/
+.student-form label { 
+    display: block;
+}
+
+.student-form lable span, input, image {
+    display: flex;
+}
+
+.student-label-left {
+    display: flex;
+}
+
+.student-form-image {
+    height: 200px;
+    width: 200px;
+    margin-top: 10px;
+    margin-left: 90px;
+}
+
+.button-save {
+    border-radius: 10px;
+    padding: 5px 25px;
+}
+
